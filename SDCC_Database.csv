@@ -1,8 +1,8 @@
 Animal,Class,Diet,Province,Endangered Status,Population,Native/Invasive,Habitat
 Moose,Mammal,Herbivore,BC,LC,20000,Native,Woodlands
 Sea otter,Mammal,Carnivore,BC,EN,8110,Native,Costal areas
-Eastern gray Squirrel,Mammal,Omnivore,OT,LC,2000000,IN,Woodlands
-Zebra Mussel,Mollusk,Herbivore,OT,750000000000000,IN,Freshwater lakes;Rivers
+Eastern gray Squirrel,Mammal,Omnivore,OT;MB;NB;QB;SK,LC,2000000,IN,Woodlands
+Zebra Mussel,Mollusk,Herbivore,OT;QB,750000000000000,IN,Freshwater lakes;Rivers
 
 
 
