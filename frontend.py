@@ -17,16 +17,24 @@ Searchbar.pack()
 SearchString = StringVar(Searchbar, "Search Animals")
 Searchbar.config(textvariable = SearchString)
 btn = Button(root, text = 'Search', ) 
-btn.place(x = '415',y='5') 
-#Load an image in the script
-img= (Image.open("bigmapofcanada.png"))
+btn.place(x = '415',y='0') 
+try:
+    img = Image.open("bigmapofcanada.png")  # Open the image
+    resized_image = img.resize((500, 305))  # Resize the image
+    new_image = ImageTk.PhotoImage(resized_image)  # Convert to Tkinter PhotoImage
 
-#Resize the Image using resize method
-resized_image= img.resize((300,205))
-new_image= ImageTk.PhotoImage(resized_image)
+    # Example of how to display the image in a Tkinter window:
+    
+    label = tk.Label(root, image=new_image)
+    label.image = new_image  # Keep a reference!
+    label.pack()
+    
 
-# all widgets will be here
-# Execute Tkinter
+except FileNotFoundError:
+    print("Error: bigmapofcanada.png not found.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
 root.mainloop()
 
 
