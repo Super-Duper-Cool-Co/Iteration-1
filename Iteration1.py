@@ -51,7 +51,7 @@ rows.append(newRow)
 
 
 
-print(rows[0])
-print(rows[1])
-print(rows[2])
-print(rows)
+print("rows[0][0]"+rows[0][0])
+# print(rows[1])
+# print(rows[2])
+# print(rows)
