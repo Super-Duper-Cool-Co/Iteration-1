@@ -57,7 +57,6 @@ def createRoot(root):
         print(f"An error occurred: {e}")
 
 def onclick():
-    print("Jonathan")
     newWindow=Tk()
     label= Label(newWindow, text="List of Animals")
     label.config(font=("Courier",14))
