@@ -1,384 +1,358 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    </head>
-    <style>
-        .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-h1{text-align: center;}
-th{text-align: center;}
-
-    </style>
-<body>
-    <h1 class="center" >List of animals</h1>
-    <div class="center">
-        <table  class="dataframe">
-            <thead>
-              <tr style="text-align: right;">
-                <th></th>
-                <th>Animal</th>
-                <th>Class</th>
-                <th>Diet</th>
-                <th>Province</th>
-                <th>Endangered Status</th>
-                <th>Population</th>
-                <th>Native/Invasive</th>
-                <th>Habitat</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>0</th>
-                <td>Animal</td>
-                <td>Class</td>
-                <td>Diet</td>
-                <td>Province</td>
-                <td>Endangered Status</td>
-                <td>Population</td>
-                <td>Native/Invasive</td>
-                <td>Habitat</td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>Moose</td>
-                <td>Mammal</td>
-                <td>Herbivore</td>
-                <td>BC</td>
-                <td>LC</td>
-                <td>20000</td>
-                <td>Native</td>
-                <td>Woodlands</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Sea otter</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>BC</td>
-                <td>EN</td>
-                <td>8110</td>
-                <td>Native</td>
-                <td>Coastal areas</td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>Eastern gray Squirrel</td>
-                <td>Mammal</td>
-                <td>Omnivore</td>
-                <td>ON</td>
-                <td>LC</td>
-                <td>2000000</td>
-                <td>Invasive</td>
-                <td>Woodlands</td>
-              </tr>
-              <tr>
-                <th>4</th>
-                <td>Zebra Mussel</td>
-                <td>Mollusk</td>
-                <td>Herbivore</td>
-                <td>QC</td>
-                <td>LC</td>
-                <td>750000000000000</td>
-                <td>Invasive</td>
-                <td>Freshwater lakes;Rivers</td>
-              </tr>
-              <tr>
-                <th>5</th>
-                <td>Beaver</td>
-                <td>Mammal</td>
-                <td>Herbivore</td>
-                <td>ON</td>
-                <td>LC</td>
-                <td>6000000</td>
-                <td>Native</td>
-                <td>Freshwater wetlands</td>
-              </tr>
-              <tr>
-                <th>6</th>
-                <td>Canada Lynx</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>AB</td>
-                <td>NT</td>
-                <td>50000</td>
-                <td>Native</td>
-                <td>Boreal forests</td>
-              </tr>
-              <tr>
-                <th>7</th>
-                <td>Snowshoe Hare</td>
-                <td>Mammal</td>
-                <td>Herbivore</td>
-                <td>MB</td>
-                <td>LC</td>
-                <td>Abundant</td>
-                <td>Native</td>
-                <td>Boreal forests</td>
-              </tr>
-              <tr>
-                <th>8</th>
-                <td>Common Loon</td>
-                <td>Bird</td>
-                <td>Carnivore</td>
-                <td>NB</td>
-                <td>LC</td>
-                <td>500000</td>
-                <td>Native</td>
-                <td>Lakes</td>
-              </tr>
-              <tr>
-                <th>9</th>
-                <td>Bald Eagle</td>
-                <td>Bird</td>
-                <td>Carnivore</td>
-                <td>NS</td>
-                <td>LC</td>
-                <td>50000</td>
-                <td>Native</td>
-                <td>Forests;Coasts</td>
-              </tr>
-              <tr>
-                <th>10</th>
-                <td>Grizzly Bear</td>
-                <td>Mammal</td>
-                <td>Omnivore</td>
-                <td>YT</td>
-                <td>TH</td>
-                <td>15000</td>
-                <td>Native</td>
-                <td>Mountains;Forests</td>
-              </tr>
-              <tr>
-                <th>11</th>
-                <td>Wood Bison</td>
-                <td>Mammal</td>
-                <td>Herbivore</td>
-                <td>NT</td>
-                <td>TH</td>
-                <td>9000</td>
-                <td>Native</td>
-                <td>Plains;Forests</td>
-              </tr>
-              <tr>
-                <th>12</th>
-                <td>Pine Marten</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>SK</td>
-                <td>LC</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Forests</td>
-              </tr>
-              <tr>
-                <th>13</th>
-                <td>Pacific Salmon</td>
-                <td>Fish</td>
-                <td>Omnivore</td>
-                <td>BC</td>
-                <td>NT</td>
-                <td>Declining</td>
-                <td>Native</td>
-                <td>Rivers;Oceans</td>
-              </tr>
-              <tr>
-                <th>14</th>
-                <td>Atlantic Cod</td>
-                <td>Fish</td>
-                <td>Carnivore</td>
-                <td>NL</td>
-                <td>EN</td>
-                <td>Declining</td>
-                <td>Native</td>
-                <td>Ocean</td>
-              </tr>
-              <tr>
-                <th>15</th>
-                <td>Great Horned Owl</td>
-                <td>Bird</td>
-                <td>Carnivore</td>
-                <td>PE</td>
-                <td>LC</td>
-                <td>Abundant</td>
-                <td>Native</td>
-                <td>Forests;Plains</td>
-              </tr>
-              <tr>
-                <th>16</th>
-                <td>Beluga Whale</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>QC</td>
-                <td>TH</td>
-                <td>150000</td>
-                <td>Native</td>
-                <td>Arctic waters</td>
-              </tr>
-              <tr>
-                <th>17</th>
-                <td>Arctic Fox</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>NU</td>
-                <td>LC</td>
-                <td>Abundant</td>
-                <td>Native</td>
-                <td>Tundra</td>
-              </tr>
-              <tr>
-                <th>18</th>
-                <td>Caribou</td>
-                <td>Mammal</td>
-                <td>Herbivore</td>
-                <td>MB</td>
-                <td>EN</td>
-                <td>Declining</td>
-                <td>Native</td>
-                <td>Boreal forests;Tundra</td>
-              </tr>
-              <tr>
-                <th>19</th>
-                <td>Black Bear</td>
-                <td>Mammal</td>
-                <td>Omnivore</td>
-                <td>NB</td>
-                <td>LC</td>
-                <td>500000</td>
-                <td>Native</td>
-                <td>Forests</td>
-              </tr>
-              <tr>
-                <th>20</th>
-                <td>Atlantic Puffin</td>
-                <td>Bird</td>
-                <td>Carnivore</td>
-                <td>NL</td>
-                <td>LC</td>
-                <td>500000</td>
-                <td>Native</td>
-                <td>Coastal cliffs</td>
-              </tr>
-              <tr>
-                <th>21</th>
-                <td>North American River Otter</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>NS</td>
-                <td>LC</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Rivers;Lakes</td>
-              </tr>
-              <tr>
-                <th>22</th>
-                <td>Wolverine</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>AB</td>
-                <td>TH</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Boreal forests;Tundra</td>
-              </tr>
-              <tr>
-                <th>23</th>
-                <td>Cougar</td>
-                <td>Mammal</td>
-                <td>Carnivore</td>
-                <td>SK</td>
-                <td>LC</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Mountains;Forests</td>
-              </tr>
-              <tr>
-                <th>24</th>
-                <td>Prairie Rattlesnake</td>
-                <td>Reptile</td>
-                <td>Carnivore</td>
-                <td>AB</td>
-                <td>LC</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Grasslands</td>
-              </tr>
-              <tr>
-                <th>25</th>
-                <td>Red Fox</td>
-                <td>Mammal</td>
-                <td>Omnivore</td>
-                <td>PE</td>
-                <td>LC</td>
-                <td>Abundant</td>
-                <td>Native</td>
-                <td>Forests;Grasslands</td>
-              </tr>
-              <tr>
-                <th>26</th>
-                <td>American Toad</td>
-                <td>Amphibian</td>
-                <td>Insectivore</td>
-                <td>ON</td>
-                <td>LC</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Wetlands;Forests</td>
-              </tr>
-              <tr>
-                <th>27</th>
-                <td>Spotted Turtle</td>
-                <td>Reptile</td>
-                <td>Omnivore</td>
-                <td>ON</td>
-                <td>EN</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Marshes;Swamps</td>
-              </tr>
-              <tr>
-                <th>28</th>
-                <td>Monarch Butterfly</td>
-                <td>Insect</td>
-                <td>Herbivore</td>
-                <td>QC</td>
-                <td>EN</td>
-                <td>Declining</td>
-                <td>Native</td>
-                <td>Meadows;Fields</td>
-              </tr>
-              <tr>
-                <th>29</th>
-                <td>Barn Owl</td>
-                <td>Bird</td>
-                <td>Carnivore</td>
-                <td>BC</td>
-                <td>TH</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Grasslands;Barns</td>
-              </tr>
-              <tr>
-                <th>30</th>
-                <td>Northern Leopard Frog</td>
-                <td>Amphibian</td>
-                <td>Insectivore</td>
-                <td>MB</td>
-                <td>TH</td>
-                <td>Unknown</td>
-                <td>Native</td>
-                <td>Marshes;Grasslands</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-    
-</body>
-</html>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Animal</th>
+      <th>Class</th>
+      <th>Diet</th>
+      <th>Province</th>
+      <th>Endangered Status</th>
+      <th>Population</th>
+      <th>Native/Invasive</th>
+      <th>Habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Animal</td>
+      <td>Class</td>
+      <td>Diet</td>
+      <td>Province</td>
+      <td>Endangered Status</td>
+      <td>Population</td>
+      <td>Native/Invasive</td>
+      <td>Habitat</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Moose</td>
+      <td>Mammal</td>
+      <td>Herbivore</td>
+      <td>BC</td>
+      <td>LC</td>
+      <td>20000</td>
+      <td>Native</td>
+      <td>Woodlands</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sea otter</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>BC</td>
+      <td>EN</td>
+      <td>8110</td>
+      <td>Native</td>
+      <td>Coastal areas</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Eastern gray Squirrel</td>
+      <td>Mammal</td>
+      <td>Omnivore</td>
+      <td>ON</td>
+      <td>LC</td>
+      <td>2000000</td>
+      <td>Invasive</td>
+      <td>Woodlands</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Zebra Mussel</td>
+      <td>Mollusk</td>
+      <td>Herbivore</td>
+      <td>QC</td>
+      <td>LC</td>
+      <td>750000000000000</td>
+      <td>Invasive</td>
+      <td>Freshwater lakes;Rivers</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Beaver</td>
+      <td>Mammal</td>
+      <td>Herbivore</td>
+      <td>ON</td>
+      <td>LC</td>
+      <td>6000000</td>
+      <td>Native</td>
+      <td>Freshwater wetlands</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Canada Lynx</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>AB</td>
+      <td>NT</td>
+      <td>50000</td>
+      <td>Native</td>
+      <td>Boreal forests</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Snowshoe Hare</td>
+      <td>Mammal</td>
+      <td>Herbivore</td>
+      <td>MB</td>
+      <td>LC</td>
+      <td>Abundant</td>
+      <td>Native</td>
+      <td>Boreal forests</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Common Loon</td>
+      <td>Bird</td>
+      <td>Carnivore</td>
+      <td>NB</td>
+      <td>LC</td>
+      <td>500000</td>
+      <td>Native</td>
+      <td>Lakes</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Bald Eagle</td>
+      <td>Bird</td>
+      <td>Carnivore</td>
+      <td>NS</td>
+      <td>LC</td>
+      <td>50000</td>
+      <td>Native</td>
+      <td>Forests;Coasts</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Grizzly Bear</td>
+      <td>Mammal</td>
+      <td>Omnivore</td>
+      <td>YT</td>
+      <td>TH</td>
+      <td>15000</td>
+      <td>Native</td>
+      <td>Mountains;Forests</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Wood Bison</td>
+      <td>Mammal</td>
+      <td>Herbivore</td>
+      <td>NT</td>
+      <td>TH</td>
+      <td>9000</td>
+      <td>Native</td>
+      <td>Plains;Forests</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Pine Marten</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>SK</td>
+      <td>LC</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Forests</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Pacific Salmon</td>
+      <td>Fish</td>
+      <td>Omnivore</td>
+      <td>BC</td>
+      <td>NT</td>
+      <td>Declining</td>
+      <td>Native</td>
+      <td>Rivers;Oceans</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Atlantic Cod</td>
+      <td>Fish</td>
+      <td>Carnivore</td>
+      <td>NL</td>
+      <td>EN</td>
+      <td>Declining</td>
+      <td>Native</td>
+      <td>Ocean</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Great Horned Owl</td>
+      <td>Bird</td>
+      <td>Carnivore</td>
+      <td>PE</td>
+      <td>LC</td>
+      <td>Abundant</td>
+      <td>Native</td>
+      <td>Forests;Plains</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Beluga Whale</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>QC</td>
+      <td>TH</td>
+      <td>150000</td>
+      <td>Native</td>
+      <td>Arctic waters</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Arctic Fox</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>NU</td>
+      <td>LC</td>
+      <td>Abundant</td>
+      <td>Native</td>
+      <td>Tundra</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Caribou</td>
+      <td>Mammal</td>
+      <td>Herbivore</td>
+      <td>MB</td>
+      <td>EN</td>
+      <td>Declining</td>
+      <td>Native</td>
+      <td>Boreal forests;Tundra</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Black Bear</td>
+      <td>Mammal</td>
+      <td>Omnivore</td>
+      <td>NB</td>
+      <td>LC</td>
+      <td>500000</td>
+      <td>Native</td>
+      <td>Forests</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Atlantic Puffin</td>
+      <td>Bird</td>
+      <td>Carnivore</td>
+      <td>NL</td>
+      <td>LC</td>
+      <td>500000</td>
+      <td>Native</td>
+      <td>Coastal cliffs</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>North American River Otter</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>NS</td>
+      <td>LC</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Rivers;Lakes</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Wolverine</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>AB</td>
+      <td>TH</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Boreal forests;Tundra</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Cougar</td>
+      <td>Mammal</td>
+      <td>Carnivore</td>
+      <td>SK</td>
+      <td>LC</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Mountains;Forests</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Prairie Rattlesnake</td>
+      <td>Reptile</td>
+      <td>Carnivore</td>
+      <td>AB</td>
+      <td>LC</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Grasslands</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Red Fox</td>
+      <td>Mammal</td>
+      <td>Omnivore</td>
+      <td>PE</td>
+      <td>LC</td>
+      <td>Abundant</td>
+      <td>Native</td>
+      <td>Forests;Grasslands</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>American Toad</td>
+      <td>Amphibian</td>
+      <td>Insectivore</td>
+      <td>ON</td>
+      <td>LC</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Wetlands;Forests</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Spotted Turtle</td>
+      <td>Reptile</td>
+      <td>Omnivore</td>
+      <td>ON</td>
+      <td>EN</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Marshes;Swamps</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Monarch Butterfly</td>
+      <td>Insect</td>
+      <td>Herbivore</td>
+      <td>QC</td>
+      <td>EN</td>
+      <td>Declining</td>
+      <td>Native</td>
+      <td>Meadows;Fields</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Barn Owl</td>
+      <td>Bird</td>
+      <td>Carnivore</td>
+      <td>BC</td>
+      <td>TH</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Grasslands;Barns</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Northern Leopard Frog</td>
+      <td>Amphibian</td>
+      <td>Insectivore</td>
+      <td>MB</td>
+      <td>TH</td>
+      <td>Unknown</td>
+      <td>Native</td>
+      <td>Marshes;Grasslands</td>
+    </tr>
+  </tbody>
+</table>

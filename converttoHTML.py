@@ -12,4 +12,7 @@ df = pd.read_csv('SDCC_Database.csv', names=columns)
 # # Play with this
 
 # Use the .to_html() to get your table in html
-print(df.to_html())
+html_string =df.to_html()
+Func = open ('list.html','w')
+Func.write(html_string)
+Func.close()
