@@ -57,27 +57,31 @@ def createRoot(root):
         print(f"An error occurred: {e}")
 
 def onclick():
-    # print("Jonathan")
-    # newWindow=Tk()
-    # label= Label(newWindow, text="List of Animals")
-    # label.config(font=("Courier",14))
-    # label.pack()
-    # text=Text(newWindow,height=50,width=150)
-    # text.pack()
+    print("Jonathan")
+    newWindow=Tk()
+    label= Label(newWindow, text="List of Animals")
+    label.config(font=("Courier",14))
+    label.pack()
+    text=Text(newWindow,height=50,width=150)
+    for row in rows:
+        text.insert(END,row)
+        text.insert(END,'\n')
+    text.pack()
+
     
     
-    print(fields)
-    i=0
-    for row2 in rows:
-        j=0
-        for entry in row2:
-            e = Entry(root, width=20, fg='blue',font=('Arial',16,'bold'))
+    # print(fields)
+    # i=0
+    # for row2 in rows:
+    #     j=0
+    #     for entry in row2:
+    #         e = Entry(root, width=20, fg='blue',font=('Arial',16,'bold'))
                  
-            e.grid(row=i, column=j)
-            e.insert(END, entry)
-            # text.insert(END, entry)
-            j+=1
-        i+=1
+    #         e.grid(row=i, column=j)
+    #         e.insert(END, entry)
+    #         # text.insert(END, entry)
+    #         j+=1
+    #     i+=1
         # text.insert(END,"\n")
 
     
