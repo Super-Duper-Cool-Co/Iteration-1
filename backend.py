@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 
 # Define filename
 filename = "SDCC_Database.csv"
@@ -103,6 +104,15 @@ def delete_animal(rows):
             return
     print("Animal not found.")
 
+def write_to_html():
+    columns = ["Animal","Class","Diet","Province","Endangered Status","Population","Native/Invasive","Habitat"]
+    df = pd.read_csv('SDCC_Database.csv', names=columns)
+
+    html_string =df.to_html()
+    Func = open('list.html','w')
+    Func.write(html_string)
+    Func.close()
+
 # Main loop
 fields, rows = load_data()
 while True:
@@ -124,6 +134,7 @@ while True:
         delete_animal(rows)
     elif choice == '8':
         print("Goodbye!")
+        write_to_html()
         break
     else:
         print("Invalid choice. Please try again.")
