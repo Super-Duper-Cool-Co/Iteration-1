@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 
 # Define filename
-filename = "SDCC_Database.csv"
+filename = "Files/SDCC_Database.csv"
 
 # Load data from CSV
 def load_data():
@@ -106,10 +106,10 @@ def delete_animal(rows):
 
 def write_to_html():
     columns = ["Animal","Class","Diet","Province","Endangered Status","Population","Native/Invasive","Habitat"]
-    df = pd.read_csv('SDCC_Database.csv', names=columns)
+    df = pd.read_csv('Files/SDCC_Database.csv', names=columns)
 
     html_string =df.to_html()
-    Func = open('list.html','w')
+    Func = open('Files/list.html','w')
     Func.write(html_string)
     Func.close()
 

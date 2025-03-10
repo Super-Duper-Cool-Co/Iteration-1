@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import PhotoImage
 from PIL import Image,ImageTk
-filename = "SDCC_Database.csv"
+filename = "Files/SDCC_Database.csv"
 
 # initializing the titles and rows list
 fields = []
@@ -38,7 +38,7 @@ def createRoot(root):
     btn = Button(root, text = 'Search', command=onclick ) 
     btn.place(x = '415',y='0') 
     try:
-        img = Image.open("bigmapofcanada.png")  # Open the image
+        img = Image.open("Files/bigmapofcanada.png")  # Open the image
         resized_image = img.resize((500, 305))  # Resize the image
         new_image = ImageTk.PhotoImage(resized_image)  # Convert to Tkinter PhotoImage
 
