@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import atexit
 
 # Define filename
 filename = "Files/SDCC_Database.csv"
@@ -113,6 +114,8 @@ def write_to_html():
     Func.write(html_string)
     Func.close()
 
+atexit.register(write_to_html)
+
 # Main loop
 fields, rows = load_data()
 while True:
@@ -134,7 +137,6 @@ while True:
         delete_animal(rows)
     elif choice == '8':
         print("Goodbye!")
-        write_to_html()
         break
     else:
         print("Invalid choice. Please try again.")
