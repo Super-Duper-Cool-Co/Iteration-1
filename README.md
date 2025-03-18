@@ -21,3 +21,9 @@ the text fields, buttons and site direction do work as intended.
 Any changes to the database are done by executing backend.py, which is a simple command line interface with several 
 menu options for adding, removing or editing entries to the database. Once the exit command is entered, the 
 program automatically rewrites list.html to update any changes.
+
+Database Management:
+
+backend.py serves as a command-line interface (CLI) for database modifications.
+Users can add, remove, or edit animal entries.
+Exiting the program triggers an automatic update of list.html to reflect recent changes.
