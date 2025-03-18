@@ -9,6 +9,8 @@ fauna native to Canada.
 
 ## Setup
 
+- TODO: Update the README.md to be up to date with current functionalities.
+
 Opening the database is as simple as opening homepage.html, which consists of a top menu bar and a large image of 
 Canada. This image currently serves as a link to the full database, but future iterations will have titles in each 
 province which, when clicked, will take the user to a list of animals that can be found in that province. The top menu 
