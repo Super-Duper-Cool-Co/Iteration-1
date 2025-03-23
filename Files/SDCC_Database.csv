@@ -1,4 +1,4 @@
-Animal,Class,Diet,Province,Endangered Status,Population,Native/Invasive,Habitat
+Animal                    , Class    , Diet       , Province, Endangered Status, Population, Native/Invasive, Habitat
 Moose,Mammal,Herbivore,BC,LC,20000,Native,Woodlands
 Sea otter,Mammal,Carnivore,BC,EN,8110,Native,Coastal areas
 Eastern gray Squirrel,Mammal,Omnivore,ON,LC,2000000,Invasive,Woodlands
@@ -29,3 +29,4 @@ Spotted Turtle,Reptile,Omnivore,ON,EN,Unknown,Native,Marshes;Swamps
 Monarch Butterfly,Insect,Herbivore,QC,EN,Declining,Native,Meadows;Fields
 Barn Owl,Bird,Carnivore,BC,TH,Unknown,Native,Grasslands;Barns
 Northern Leopard Frog,Amphibian,Insectivore,MB,TH,Unknown,Native,Marshes;Grasslands
+dog,pet,carnivore,ON,EN,1,Native,home

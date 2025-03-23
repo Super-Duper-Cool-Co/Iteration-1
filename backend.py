@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import atexit
+from Animal import *
 
 # Define filename
 filename = "Files/SDCC_Database.csv"
@@ -8,20 +9,27 @@ filename = "Files/SDCC_Database.csv"
 # Load data from CSV
 def load_data():
     fields = []
-    rows = []
+    animalList = []
     with open(filename, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
         fields = next(csvreader)  # Extract field names
         for row in csvreader:
-            rows.append(row)
-    return fields, rows
+            newAnimal= Animal(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7])
+            animalList.append(newAnimal)
+    for field in fields:
+        field=field.strip()
+        print(f"field= {field}")
+    return fields, animalList
 
 # Save data back to CSV
 def save_data(fields, rows):
+    animals=[]
+    for animal in rows:
+        animals.append([animal.name, animal.type, animal.diet, animal.province, animal.endagerStatus, animal.population, animal.invasiveStatus, animal.habitat])
     with open(filename, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
-        csvwriter.writerows(rows)
+        csvwriter.writerows(animals)
 
 # Display menu
 def display_menu():
@@ -39,34 +47,35 @@ def display_menu():
 def display_all_animals(rows):
     print("\nAll Animals and Their Descriptions:")
     for row in rows:
-        print(f"{row[0]} - Class: {row[1]}, Diet: {row[2]}, Province: {row[3]}, Status: {row[4]}, Population: {row[5]}, Native/Invasive: {row[6]}, Habitat: {row[7]}")
-
+        row.toString()
+6
 # Get an animal's description
-def get_animal_description(rows):
-    animal_name = input("Enter the animal name: ").strip().lower()
+def get_animal_description(rows,name):
     for row in rows:
-        if row[0].lower() == animal_name:
-            print(f"{row[0]} - Class: {row[1]}, Diet: {row[2]}, Province: {row[3]}, Status: {row[4]}, Population: {row[5]}, Native/Invasive: {row[6]}, Habitat: {row[7]}")
-            return
+        if row.name.upper() == name.upper():
+            print(row.name)
+            return row
     print("Animal not found.")
 
 # Find animals in a specific province
-def find_by_province(rows):
-    province = input("Enter the province: ").strip().upper()
-    found = [row for row in rows if row[3] == province]
-    if found:
-        for row in found:
-            print(row[0])
+def find_by_province(rows, province):
+    animalslist=[]
+    for animal in rows:
+        if animal.province== province:
+            animalslist.append(animal)
+    if len(animalslist)>0:
+        return animalslist
     else:
         print("No animals found in this province.")
 
 # Search animals by diet
-def search_by_diet(rows):
-    diet = input("Enter diet type (Carnivore, Herbivore, Omnivore): ").strip().capitalize()
-    found = [row for row in rows if row[2] == diet]
-    if found:
-        for row in found:
-            print(row[0])
+def search_by_diet(rows,diet):
+    animallist=[]
+    for animal in rows:
+        if animal.diet== diet:
+            animallist.append(animal)
+    if len(animallist)>0:
+        return animallist
     else:
         print("No animals found with this diet.")
 
@@ -75,34 +84,56 @@ def add_animal(fields, rows):
     new_animal = []
     for field in fields:
         new_animal.append(input(f"Enter {field}: ").strip())
-    rows.append(new_animal)
+    animal= Animal(new_animal[0],new_animal[1],new_animal[2],new_animal[3],new_animal[4],new_animal[5],new_animal[6],new_animal[7])
+    rows.append(animal)
     save_data(fields, rows)
     print("Animal added successfully.")
 
 # Edit an animal's details
-def edit_animal(rows):
-    animal_name = input("Enter the animal name to edit: ").strip().lower()
-    for row in rows:
-        if row[0].lower() == animal_name:
-            print("Current details:", row)
-            field_to_edit = input("Which field do you want to change? (Class, Diet, Province, etc.): ").strip()
-            if field_to_edit in fields:
-                new_value = input(f"Enter new value for {field_to_edit}: ").strip()
-                row[fields.index(field_to_edit)] = new_value
-                save_data(fields, rows)
-                print("Animal updated successfully.")
-                return
-    print("Animal not found.")
+# def edit_animal(fields, rows):
+#     """
+#     Edits the details of an animal based on its name.
+
+#     Args:
+#         fields (list): A list of field names.
+#         rows (list): A list of Animal objects.
+#     """
+#     animal_name = input("Enter the animal name to edit: ").strip().lower()
+
+#     for animal in rows:  # Iterate through Animal objects, not raw rows
+#         if animal.name.lower() == animal_name:
+#             print("Current details: ", end="")
+#             print(animal.toString()) #using print(animal) now that we are using the __str__ method.
+#             print(fields)
+#             field_to_edit = input("Which field do you want to change? (name, species, breed, etc.): ").strip()
+
+#             if field_to_edit in fields:
+#                 new_value = input(f"Enter new value for {field_to_edit}: ").strip()
+#                 try:
+#                     setattr(animal, field_to_edit, new_value) #use setattr to change the attribute of the animal object.
+#                     save_data(fields, rows) #needs to be defined.
+#                     print("Animal updated successfully.")
+#                     return
+#                 except AttributeError:
+#                   print(f"Error: Field '{field_to_edit}' does not exist.")
+#                   return
+#             else:
+#                 print(f"Error: Field '{field_to_edit}' not found.")
+#                 return
+
+#     print("Animal not found.")
 
 # Delete an animal
-def delete_animal(rows):
+def delete_animal(fields, rows):
     animal_name = input("Enter the animal name to delete: ").strip().lower()
-    for i, row in enumerate(rows):
-        if row[0].lower() == animal_name:
+    i=0
+    for row in rows:
+        if row.name.lower() == animal_name:
             rows.pop(i)
             save_data(fields, rows)
             print("Animal deleted successfully.")
             return
+        i+=1
     print("Animal not found.")
 
 def write_to_html():
@@ -124,17 +155,25 @@ while True:
     if choice == '1':
         display_all_animals(rows)
     elif choice == '2':
-        get_animal_description(rows)
+        name = input("Enter the animal name: ")
+        animal=get_animal_description(rows, name)
+        animal.toString()
     elif choice == '3':
-        find_by_province(rows)
+        province = input("Enter the province animal can be found: ")
+        animals=find_by_province(rows, province)
+        for animal in animals:
+            animal.toString()
     elif choice == '4':
-        search_by_diet(rows)
+       province = input("Enter the diet the animal can eats: ")
+       animals=search_by_diet(rows, province)
+       for animal in animals:
+            animal.toString()
     elif choice == '5':
         add_animal(fields, rows)
     elif choice == '6':
-        edit_animal(rows)
+        edit_animal(fields,rows)
     elif choice == '7':
-        delete_animal(rows)
+        delete_animal(fields, rows)
     elif choice == '8':
         print("Goodbye!")
         break
