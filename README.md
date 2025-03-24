@@ -76,6 +76,5 @@ python backend.py
 - [ ] Make the "Add Animal" form functional
 - [ ] Add clickable provinces to the map on the homepage
 - [ ] Improve HTML and CSS styling
-- [ ] Implement dynamic content rendering in `list.html`
 
 ---
