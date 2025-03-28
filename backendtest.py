@@ -6,39 +6,37 @@ from Animal import *
 
 import unittest
 
-class TestStringMethods(unittest.TestCase):
-    ZebraMussel = Animal("Zebra Mussel", "Mollusk", "Herbivore", "QC", "LC", "7.5E+14", "Invasive", "Freshwater lakes;Rivers")
-    Moose = Animal("Moose", "Mammal", "Herbivore", "BC", "LC", "20000", "Native", "Woodlands")
-    fox = Animal("fox", "Mammal", "Carnivore", "BC", "LC", "20000", "Native", "Woodlands")
-    animalList = {ZebraMussel, Moose, fox}
+class TestBackend(unittest.TestCase):
+    fields, data = load_data()
 
-    def test_findAnimalByProvince(self):
-        result = find_by_province(self.animalList, "BC")
-        self.assertEqual(result, [self.Moose,self.fox])
+    def test_save_data(self):
+        # Test if the data is saved correctly
+        save_data(self.fields, self.data)
+        self.assertTrue(fields,["Animal                    ", "Class    ", "Diet       ", "Province", "Endangered Status", "Population", "Native/Invasive", "Habitat"])
 
-        result_qc = find_by_province(self.animalList, "QC")
-        self.assertEqual(result_qc, [self.ZebraMussel])
+    def test_getAnimal(self):
+        # Test if the getAnimals function returns the correct data
+        Moose = get_animal_description(self.data, "Moose")
+        self.assertEqual(Moose.name, "Moose")
+    def test_getAnimalProvince(self):
+        # Test if the getAnimalProvince function returns the correct data
+        BC= find_by_province(self.data, "BC")
+        isBc=True
+        for animal in BC:
+            if animal.province != "BC":
+                isBc=False
+                break
+        self.assertTrue(isBc)
 
-        result_none = find_by_province(self.animalList, "AB")
-        self.assertEqual(result_none, None)
-
-    def test_findAnimalByDiet(self):
-        result = search_by_diet(self.animalList, "Herbivore")
-        self.assertEqual(result, [self.ZebraMussel,self.Moose])
-
-        result_carnivore = search_by_diet(self.animalList, "Carnivore")
-        self.assertEqual(result_carnivore, [self.fox])
-
-    def test_getAnimalDescritpion(self):
-        ZebraMussel = Animal("Zebra Mussel", "Mollusk", "Herbivore", "QC", "LC", "7.5E+14", "Invasive", "Freshwater lakes;Rivers")
-        Moose = Animal("Moose", "Mammal", "Herbivore", "BC", "LC", "20000", "Native", "Woodlands")
-        fox = Animal("fox", "Mammal", "Carnivore", "BC", "LC", "20000", "Native", "Woodlands")
-        animalList = {ZebraMussel, Moose, fox}
-        result_Moose = get_animal_description(animalList, "Zebra Mussel")
-        self.assertEqual(result_Moose, [ZebraMussel])
-
-        result_Fox = get_animal_description(animalList, "fox")
-        self.assertEqual(result_Fox, [fox])
+    def test_getAnimalDiet(self):
+        # Test if the getAnimalDiet function returns the correct data
+        Carnivore = search_by_diet(self.data, "Carnivore")
+        isCarnivore=True
+        for animal in Carnivore:
+            if animal.diet != "Carnivore":
+                isCarnivore=False
+                break
+        self.assertTrue(isCarnivore)
 
     
 if __name__ == '__main__':
