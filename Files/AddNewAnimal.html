@@ -6,6 +6,25 @@
     <title>add new Animal</title>
 </head>
 <body>
+    <script>
+        function getValue(){
+            let name = document.getElementById("Name").value;
+            let className = document.getElementById("Class").value; 
+            let diet = document.getElementById("Diet").value;
+            let province = document.getElementById("Province").value;   
+            let endangered = document.getElementById("Endangered").value;
+            let population = document.getElementById("Population").value;
+            let invasive = document.getElementById("Invasive").value;
+            let habitat = document.getElementById("Habitat").value; 
+            alert(name + " " + className + " " + diet + " " + province + " " + endangered + " " + population + " " + invasive + " " + habitat);
+        }
+    </script>
+    <div class="topnav">
+        <a class="active" href="../homepage.html">Home</a>
+        <a href="AddNewAnimal.html">Add Animal</a>
+        <a href="list_ver2.html">List</a>
+        <!--<input type="text" placeholder="Search..">-->
+    </div>
     <form>
         <label for="Name">Name:</label><br>
         <input type="text" id="Name" name="Name"><br>
@@ -30,6 +49,8 @@
 
         <label for="Habitat">Habitat:</label><br>
         <input type="text" id="Habitat" name="Habitat"><br>
+
+        <button onclick="getValue()">Add Animal</button>
 
        
 </form>
