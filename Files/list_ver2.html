@@ -42,6 +42,17 @@
       margin-right: 16px;
       font-size: 17px;
     }
+    
+    .topnav .title {
+      font-size: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 10px;
+    }
     .center {
       display: block;
       margin-left: auto;
@@ -73,7 +84,8 @@
 <div class="topnav">
   <a class="active" href="../homepage.html">Home</a>
   <a href="AddNewAnimal.html">Add Animal</a>
-  <a href="#List">List</a>
+  <a href="list_ver2.html">List</a>
+  <h1 class="title">Super Duper Cool Canadian Animal Database</h1>
   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..." title="Search">
 </div>
 
@@ -395,82 +407,118 @@
 </table>
 
 <script>
-      function sortTable(n) {
-      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  function filterTableByProvince() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const provinceFilter = urlParams.get('province');
+    
+    if (provinceFilter) {
+      var table, tr, td, i;
       table = document.getElementById("SDCCAD");
-      switching = true;
-      //Set the sorting direction to ascending:
-      dir = "asc"; 
-      /*Make a loop that will continue until
-      no switching has been done:*/
-      while (switching) {
-        //start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
-          /*check if the two rows should switch place,
-          based on the direction, asc or desc:*/
-          if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch= true;
-              break;
-            }
-          } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          //Each time a switch is done, increase this count by 1:
-          switchcount ++;      
-        } else {
-          /*If no switching has been done AND the direction is "asc",
-          set the direction to "desc" and run the while loop again.*/
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+          var provinceText = td.textContent || td.innerText;
+          if (provinceText.toUpperCase() === provinceFilter.toUpperCase()) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
           }
         }
       }
     }
-  function myFunction() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("SDCCAD");
-    tr = table.getElementsByTagName("tr");
+  }
 
-    for (i = 1; i < tr.length; i++) { // Start at 1 to skip the header row
-      let rowVisible = false;
-      td = tr[i].getElementsByTagName("td");
-      for (j = 0; j < td.length; j++) { // Loop through each cell in the row
-        if (td[j]) {
-          txtValue = td[j].textContent || td[j].innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            rowVisible = true;
+  function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("SDCCAD");
+    switching = true;
+      //Set the sorting direction to ascending:
+    dir = "asc"; 
+      /*Make a loop that will continue until
+      no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+        shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+        if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
             break;
           }
         }
       }
-      tr[i].style.display = rowVisible ? "" : "none";
+      if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+          //Each time a switch is done, increase this count by 1:
+        switchcount ++;      
+      } else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
     }
   }
+  function myFunction() {
+  var input, filter, table, tr, td, i, j, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("SDCCAD");
+  tr = table.getElementsByTagName("tr");
+  const urlParams = new URLSearchParams(window.location.search);
+  const provinceFilter = urlParams.get('province');
+  
+  for (i = 1; i < tr.length; i++) {
+    let rowVisible = false;
+    td = tr[i].getElementsByTagName("td");
+    if (provinceFilter) {
+      const provinceTd = td[3];
+      if (provinceTd) {
+        var provinceText = provinceTd.textContent || provinceTd.innerText;
+        if (provinceText.toUpperCase() !== provinceFilter.toUpperCase()) {
+          tr[i].style.display = "none";
+          continue;
+        }
+      }
+    }
+    for (j = 0; j < td.length; j++) {
+      if (td[j]) {
+        txtValue = td[j].textContent || td[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          rowVisible = true;
+          break;
+        }
+      }
+    }
+    tr[i].style.display = rowVisible ? "" : "none";
+  }
+}
+  window.onload = filterTableByProvince;
 </script>
 
 </body>

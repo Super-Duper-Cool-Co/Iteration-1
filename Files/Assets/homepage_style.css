@@ -1,5 +1,5 @@
 .mapdiv{
-    max-width:53.4%;
+    max-width:51.5%;
     height: auto;
     display:block; 
     margin-left: auto; 
@@ -40,6 +40,17 @@
     background-color: #FF0000;
     color: white;
   }
+
+  .topnav .title {
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 10px;
+}
   
   /* Style the search box inside the navigation bar */
   /*.topnav input[type=text] {
