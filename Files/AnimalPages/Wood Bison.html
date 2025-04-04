@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Duper Cool Canadian Animal Database</title>
+  <style>
+    .topnav {
+      overflow: hidden;
+      background-color: #e9e9e9;
+    }
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Style the "active" element to highlight the current page */
+    .topnav a.active {
+      background-color: #FF0000;
+      color: white;
+    }
+
+    /* Style the search box inside the navigation bar */
+    .topnav input[type=text] {
+      float: right;
+      padding: 6px;
+      border: none;
+      margin-top: 8px;
+      margin-right: 16px;
+      font-size: 17px;
+    }
+
+    .topnav .title {
+      font-size: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 10px;
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    table {
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      cursor: pointer;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+  </style>
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="../../homepage.html">Home</a>
+  <a href="../AddNewAnimal.html">Add Animal</a>
+  <a href="../list_ver2.html">List</a>
+  <h1 class="title">Super Duper Cool Canadian Animal Database</h1>
+</div>
+<img src="AnimalImages/wood-bison.jpg" alt="Wood Bison" style="max-width: auto; max-height: 600px; display:block; margin-left: auto; margin-right: auto;";>
+<table id="Wood Bison">
+  <thead>
+  <tr style="text-align: right;">
+    <th>Animal</th>
+    <th>Class</th>
+    <th>Diet</th>
+    <th>Province</th>
+    <th>Endangered Status</th>
+    <th>Population</th>
+    <th>Native/Invasive</th>
+    <th>Habitat</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Wood Bison</td>
+    <td>Mammal</td>
+    <td>Herbivore</td>
+    <td>NT</td>
+    <td>TH</td>
+    <td>9000</td>
+    <td>Native</td>
+    <td>Plains; Forests</td>
+  </tr>
+  </tbody>
+</body>
+</html>
