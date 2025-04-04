@@ -42,6 +42,7 @@
   }
 
   .topnav .title {
+    color: black;
     font-size: 1.5rem;
     justify-content: center;
     align-items: center;
