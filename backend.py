@@ -90,38 +90,59 @@ def add_animal(fields, rows):
     print("Animal added successfully.")
 
 # Edit an animal's details
-# def edit_animal(fields, rows):
-#     """
-#     Edits the details of an animal based on its name.
+def edit_animal(fields, rows):
+    """6
+    Edits the details of an animal based on its name.
 
-#     Args:
-#         fields (list): A list of field names.
-#         rows (list): A list of Animal objects.
-#     """
-#     animal_name = input("Enter the animal name to edit: ").strip().lower()
+    Args:
+        fields (list): A list of field names.
+        rows (list): A list of Animal objects.
+    """
+    animal_name = input("Enter the animal name to edit: ").strip().lower()
 
-#     for animal in rows:  # Iterate through Animal objects, not raw rows
-#         if animal.name.lower() == animal_name:
-#             print("Current details: ", end="")
-#             print(animal.toString()) #using print(animal) now that we are using the __str__ method.
-#             print(fields)
-#             field_to_edit = input("Which field do you want to change? (name, species, breed, etc.): ").strip()
+    for animal in rows:  # Iterate through Animal objects, not raw rows
+        if animal.name.lower() == animal_name:
+            print("Current details: ", end="")
+            print(animal.toString()) #using print(animal) now that we are using the __str__ method.
+           
+            field_to_edit = input("Which field do you want to change? (name, species, breed, etc.): ").strip()
+            loop=False
+            while loop==False:
+                if field_to_edit=="name":
+                    animal.name = input("Enter new animal name: ").strip()
+                    loop=True
+                elif field_to_edit=="class":
+                    animal.type = input("Enter new animal class: ").strip()
+                    loop=True
+                elif field_to_edit=="diet":
+                    animal.diet = input("Enter new animal diet: ").strip()
+                    loop=True
+                elif field_to_edit=="province":
+                    animal.province = input("Enter new animal province: ").strip()
+                    loop=True
+                elif field_to_edit=="endangered status":
+                    animal.endagerStatus = input("Enter new animal endangered status: ").strip()
+                    loop=True
+                elif field_to_edit=="population":
+                    animal.population = input("Enter new animal population: ").strip()
+                    loop=True
+                elif field_to_edit=="native/invasive":
+                    animal.invasiveStatus = input("Enter new animal native/invasive status: ").strip()
+                    loop=True
+                elif field_to_edit=="habitat":
+                    animal.habitat = input("Enter new animal habitat: ").strip()
+                    loop=True
+                elif field_to_edit=="exit":
+                    print("Exiting edit mode.")
+                    return
+                else:
+                    print("Invalid field. Please try again.")
+                    field_to_edit = input("Which field do you want to change? (name, species, breed, etc.): ").strip()    
 
-#             if field_to_edit in fields:
-#                 new_value = input(f"Enter new value for {field_to_edit}: ").strip()
-#                 try:
-#                     setattr(animal, field_to_edit, new_value) #use setattr to change the attribute of the animal object.
-#                     save_data(fields, rows) #needs to be defined.
-#                     print("Animal updated successfully.")
-#                     return
-#                 except AttributeError:
-#                   print(f"Error: Field '{field_to_edit}' does not exist.")
-#                   return
-#             else:
-#                 print(f"Error: Field '{field_to_edit}' not found.")
-#                 return
+            save_data(fields, rows)
+            print("Animal details updated successfully.")
 
-#     print("Animal not found.")
+    print("Animal not found.")
 
 # Delete an animal
 def delete_animal(fields, rows):
